@@ -2,7 +2,9 @@
 
 A minimal, client-side password strength checker. Type a password and get an instant rating — nothing is sent to a server.
 
-**Live locally:** open [`index.html`](index.html) in a browser, or serve the folder with any static file server.
+**Live:** [kadeemj.github.io/Password-Strength-Checker](https://kadeemj.github.io/Password-Strength-Checker/)
+
+**Locally:** open [`index.html`](index.html) in a browser, or serve the folder with any static file server.
 
 ## Features
 
