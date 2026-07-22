@@ -68,6 +68,13 @@
     symbol: checklist.querySelector('[data-rule="symbol"]'),
   };
 
+  function charLength(password) {
+    if (typeof Intl !== "undefined" && Intl.Segmenter) {
+      return [...new Intl.Segmenter().segment(password)].length;
+    }
+    return Array.from(password).length;
+  }
+
   function hasSequence(password) {
     const lower = password.toLowerCase();
     for (const seq of SEQUENCES) {
@@ -81,12 +88,17 @@
   }
 
   function hasRepeat(password) {
-    return /(.)\1{2,}/.test(password);
+    const chars = Array.from(password);
+    for (let i = 0; i < chars.length - 2; i++) {
+      if (chars[i] === chars[i + 1] && chars[i] === chars[i + 2]) return true;
+    }
+    return false;
   }
 
   function analyze(password) {
+    const length = charLength(password);
     const rules = {
-      length: password.length >= 8,
+      length: length >= 8,
       lower: /[a-z]/.test(password),
       upper: /[A-Z]/.test(password),
       digit: /\d/.test(password),
@@ -99,9 +111,9 @@
 
     let score = 0;
 
-    if (password.length >= 8) score += 1;
-    if (password.length >= 12) score += 1;
-    if (password.length >= 16) score += 1;
+    if (length >= 8) score += 1;
+    if (length >= 12) score += 1;
+    if (length >= 16) score += 1;
 
     const variety =
       Number(rules.lower) +
@@ -118,7 +130,8 @@
     if (common) score -= 3;
     if (sequential) score -= 1;
     if (repeated) score -= 1;
-    if (password.length < 8) score = Math.min(score, 0);
+    if (length < 8) score = Math.min(score, 0);
+    if (length < 12) score = Math.min(score, 2);
 
     score = Math.max(0, Math.min(3, score));
     const level = LEVELS[score];
@@ -126,7 +139,7 @@
     let tip = "";
     if (common) {
       tip = "This is a commonly used password. Choose something unique.";
-    } else if (password.length < 8) {
+    } else if (length < 8) {
       tip = "Use at least 8 characters.";
     } else if (variety < 3) {
       tip = "Mix uppercase, lowercase, numbers, and symbols.";

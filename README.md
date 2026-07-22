@@ -28,9 +28,11 @@ Then open the URL shown (use **http://**, not https://).
 
 Strength is computed from:
 
-1. **Length** — bonuses at 8+, 12+, and 16+ characters  
+1. **Length** — bonuses at 8+, 12+, and 16+ characters (counted as Unicode characters, not UTF-16 units)  
 2. **Character variety** — lowercase, uppercase, digits, symbols  
 3. **Penalties** — common passwords, sequential runs (`abc`, `123`, `qwerty`), and repeated characters  
+
+**Strong** requires at least 12 characters; shorter passwords top out at Good even with full variety.
 
 The result maps to four levels and updates the meter and tip on every keystroke.
 
