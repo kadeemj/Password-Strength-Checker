@@ -41,7 +41,8 @@ The result maps to four levels and updates the meter and tip on every keystroke.
 ├── index.html   # UI
 ├── styles.css   # Layout and strength colors
 ├── app.js       # Scoring logic
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 No build step, frameworks, or dependencies.
@@ -52,4 +53,4 @@ Passwords never leave the page. There are no analytics, APIs, or network calls r
 
 ## License
 
-MIT
+[MIT](LICENSE)
