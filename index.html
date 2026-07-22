@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strength — Password Checker</title>
+    <meta
+      name="description"
+      content="Check password strength locally. Nothing leaves your browser."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1 class="brand">Strength</h1>
+        <p class="tagline">Check a password. Nothing leaves this page.</p>
+      </header>
+
+      <form class="form" autocomplete="off" onsubmit="return false;">
+        <label class="field-label" for="password">Password</label>
+        <div class="field">
+          <input
+            id="password"
+            class="password-input"
+            type="password"
+            name="password"
+            autocomplete="off"
+            spellcheck="false"
+            autocapitalize="off"
+            placeholder="Type a password"
+            aria-describedby="strength-label tip"
+          />
+          <button
+            type="button"
+            id="toggle"
+            class="toggle"
+            aria-label="Show password"
+            aria-pressed="false"
+          >
+            Show
+          </button>
+        </div>
+
+        <div class="meter" aria-hidden="true">
+          <div id="meter-fill" class="meter-fill" data-level="empty"></div>
+        </div>
+        <p id="strength-label" class="strength-label" aria-live="polite">
+          —
+        </p>
+
+        <ul class="checklist" id="checklist" aria-label="Password requirements">
+          <li data-rule="length">At least 8 characters</li>
+          <li data-rule="lower">Lowercase letter</li>
+          <li data-rule="upper">Uppercase letter</li>
+          <li data-rule="digit">Number</li>
+          <li data-rule="symbol">Symbol</li>
+        </ul>
+
+        <p id="tip" class="tip" aria-live="polite"></p>
+      </form>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
